@@ -30,12 +30,7 @@ module.exports = function(grunt) {
         var filePaths = options.remote.files.map(function(file) {
             return {
                 name: file,
-                url: options.domain + '/s/content/styleguide/couk/?nostyle#/style/css/'+ file
-            };
-        }).concat(options.remote.files.map(function(file) {
-            return {
-                name: file,
-                url: options.domain + '/s/content/styleguide/com/?nostyle#/style/css/'+ file
+                url: options.domain + '/s/content/styleguide/'+ options.theme +'/?nostyle#/style/css/'+ file
             };
         }));
 
