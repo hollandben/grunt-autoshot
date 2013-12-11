@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                 name: file,
                 url: options.domain + '/s/content/styleguide/'+ options.theme +'/?nostyle#/style/css/'+ file
             };
-        }));
+        });
 
 
         // Core screenshot function using phamtonJS
