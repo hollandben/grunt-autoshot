@@ -77,7 +77,7 @@ module.exports = function(grunt) {
 
                         setTimeout(function() {
                             page.render(path + '/' + target, function() {
-                                grunt.log.writeln('Take a screenshot to ' + target);
+                                grunt.log.writeln('Taking a screenshot of: ' + target);
                                 ph.exit();
                                 cb();
                             });
