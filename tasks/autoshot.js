@@ -97,7 +97,7 @@ module.exports = function(grunt) {
         if (options.remote) {
             hasRemote = true;
 
-            async.eachSeries(filePaths, function(file, outerCb) {
+            async.each(filePaths, function(file, outerCb) {
                 async.eachSeries(options.viewport, function(view, cb) {
                     screenshot({
                         path: options.path,
