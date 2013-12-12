@@ -27,10 +27,10 @@ module.exports = function(grunt) {
         }
 
 
-        var filePaths = options.remote.files.map(function(file) {
+        var filePaths = options.remote.files.map(function(url) {
             return {
-                name: file,
-                url: options.domain + '/s/content/styleguide/'+ options.theme +'/?nostyle#/style/css/'+ file
+                name: url,
+                url: options.domain + url
             };
         });
 
@@ -77,7 +77,7 @@ module.exports = function(grunt) {
 
                         setTimeout(function() {
                             page.render(path + '/' + target, function() {
-                                grunt.log.writeln('Taking a screenshot of: ' + target);
+                                grunt.log.writeln('Take a screenshot to ' + target);
                                 ph.exit();
                                 cb();
                             });
