@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         }
 
 
-        var filePaths = options.remote.files.map(function(url) {
+        var filePaths = options.remote.files.split(',').map(function(url) {
             return {
                 name: url,
                 url: options.domain + url
