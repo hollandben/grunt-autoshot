@@ -1,4 +1,7 @@
-# grunt-autoshot [![Build Status](https://travis-ci.org/Ferrari/grunt-autoshot.png?branch=master)](https://travis-ci.org/Ferrari/grunt-autoshot)
+# grunt-autoshot
+
+# THIS IS NOT FOR DEV PURPOSES
+### Go checkout [the original autoshot task](https://github.com/Ferrari/grunt-autoshot)
 
 Create a quick screenshot for your site which could help for document or testing. 
 Inspired by [Testing your responsive design with PhantomJS](http://daker.me/2013/07/testing-your-responsive-design-with-phantomjs.html), also suport different resolution base on your viewport, it's useful to responsive design.
