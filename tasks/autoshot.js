@@ -64,7 +64,7 @@ module.exports = function(grunt) {
                             console.log(err, status);
                         }
 
-                        var target = (file.replace(/\//g, '_')) + '_'+ viewport +'_' + '.png';
+                        var target = (file.replace(/\/|\?|=|&/g, '_')) + '_'+ viewport +'_' + '.png';
 
                         // Background problem under self-host server
                         page.evaluate(function() {
