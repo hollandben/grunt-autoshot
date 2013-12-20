@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         var options = this.options({
             path: __dirname + '/screenshot',
             timeout: 0,
-            viewport: ['1920x1080']
+            viewport: '1920x1080'
         });
 
         if(!options.domain) {
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 
         // Core screenshot function using phamtonJS
         var screenshot = function(opts, cb) {
-            var viewport = opts.viewport;
+            var viewport = opts.viewport.split(',');
             var type     = opts.type;
             var path     = opts.path;
             var url      = opts.url;
