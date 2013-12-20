@@ -26,7 +26,6 @@ module.exports = function(grunt) {
             grunt.fail.fatal('A domain is needed');
         }
 
-
         var filePaths = options.remote.files.split(',').map(function(url) {
             return {
                 name: url,
@@ -92,73 +91,16 @@ module.exports = function(grunt) {
             grunt.fail.fatal('At least need one either remote or local url');
         }
 
-        var hasRemote = false;
-
-        if (options.remote) {
-            hasRemote = true;
-
-            async.each(filePaths, function(file, outerCb) {
-                async.each(options.viewport.split(','), function(view, cb) {
-                    screenshot({
-                        path: options.path,
-                        type: 'remote',
-                        viewport: view,
-                        url: file.url,
-                        file: file.name
-                    }, function() {
-                        cb();
-                    });
-                }, function() {
-                    outerCb();
-                });
-            }, function() {
-                grunt.event.emit('finish', 'remote');
-            });
-        }
-
-        var hasLocal = false;
-
-        if (options.local) {
-            hasLocal = true;
-            async.eachSeries(options.local.files, function(file, outerCb) {
-                var mount = st({
-                    path: options.local.path,
-                    index: file.src
-                });
-                http.createServer(function(req, res) {
-                    mount(req, res);
-                }).listen(options.local.port, function() {
-                    async.eachSeries(options.viewport, function(view, cb) {
-                        screenshot({
-                            path: options.path,
-                            //filename: 'local-' + options.filename + '-' + item,
-                            //type: options.type,
-                            //url: 'http://localhost:' + options.local.port,
-                            type: 'local',
-                            viewport: view,
-                            src: 'http://localhost:' + options.local.port + '/' + file.src,
-                            dest: file.dest
-                        }, function() {
-                            cb();
-                        });
-                    }, function() {
-                        grunt.event.emit('finish', 'local');
-                    });
-                });
-            });
-        }
-
-        // Listen event to decide when can stop the task
-        grunt.event.on('finish', function(eventType) {
-            if (eventType === 'remote') {
-                hasRemote = false;
-            }
-            if (eventType === 'local') {
-                hasLocal = false;
-            }
-            if (!hasRemote && !hasLocal) {
-                done();
-            }
-        });
+        async.each(filePaths, function(file, outerCb) {
+            async.each(options.viewport.split(','), function(view, cb) {
+                screenshot({
+                    path: options.path,
+                    type: 'remote',
+                    viewport: view,
+                    url: file.url,
+                    file: file.name
+                }, cb);
+            }, outerCb);
+        }, done);
     });
 };
