@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 
         // Core screenshot function using phamtonJS
         var screenshot = function(opts, cb) {
-            var viewport = opts.viewport.split(',');
+            var viewport = opts.viewport;
             var type     = opts.type;
             var path     = opts.path;
             var url      = opts.url;
@@ -98,7 +98,7 @@ module.exports = function(grunt) {
             hasRemote = true;
 
             async.each(filePaths, function(file, outerCb) {
-                async.each(options.viewport, function(view, cb) {
+                async.each(options.viewport.split(','), function(view, cb) {
                     screenshot({
                         path: options.path,
                         type: 'remote',
